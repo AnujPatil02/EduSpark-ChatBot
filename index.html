@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>EduSpark - Your Study Partner</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet" />
+  <script src="https://cdn.botpress.cloud/webchat/v3.2/inject.js" defer></script>
+  <script src="https://files.bpcontent.cloud/2025/08/06/05/20250806051338-A3OYY5DF.js" defer></script>
+  <style>
+    :root {
+      --primary: #0a0f2c;
+      --secondary: #00c9f6;
+      --text: #e0e0e0;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    h1, h2, h3, .section-title, .preview-text {
+      font-family: 'Fredoka', sans-serif;
+    }
+
+    body {
+      background: radial-gradient(circle at var(--x, 50%) var(--y, 50%), #0a0f2c, #000000);
+      color: var(--text);
+      transition: background-color 0.5s ease, color 0.5s ease;
+      height: 100vh;
+      overflow-x: hidden;
+    }
+
+    html {
+      height: 100%;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, #000000, #0a0f2c, #1a1f40, #003366);
+      opacity: 0.3;
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    header {
+      padding: 15px;
+      text-align: center;
+      background-color: rgba(10, 15, 44, 0.9);
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    }
+
+    header img {
+      height: 50px;
+      border-radius: 50%;
+      transition: transform 0.3s ease;
+    }
+
+    header img:hover {
+      transform: scale(1.05);
+    }
+
+    header h1 {
+      font-size: 1.8rem;
+      margin-top: 8px;
+      color: #fff;
+    }
+
+    header p {
+      font-size: 0.95rem;
+      color: #a4dff0;
+    }
+
+    section {
+      padding: 40px 20px;
+      text-align: center;
+      backdrop-filter: blur(3px);
+    }
+
+    .columns {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 40px;
+      margin-top: 20px;
+    }
+
+    .features, .tools {
+      background-color: rgba(255, 255, 255, 0.05);
+      border-radius: 10px;
+      padding: 20px;
+      flex: 1;
+      min-width: 300px;
+      max-width: 400px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+      animation: fadeInZoom 1s ease forwards;
+    }
+
+    .features ul, .tools ul {
+      padding: 0;
+    }
+
+    .features li, .tools li {
+      list-style: none;
+      margin: 10px 0;
+      opacity: 1;
+      color: var(--text);
+      animation: slideUp 0.4s ease forwards;
+      animation-fill-mode: forwards;
+    }
+
+    .section-title {
+      color: var(--secondary);
+      margin-bottom: 20px;
+    }
+
+    .start-btn {
+      background-color: var(--secondary);
+      color: #fff;
+      padding: 15px 30px;
+      font-size: 1rem;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-top: 30px;
+      transition: transform 0.3s ease, background-color 0.3s ease;
+      text-decoration: none;
+      display: inline-block;
+    }
+
+    .start-btn:hover {
+      background-color: #00b1d6;
+      transform: scale(1.05);
+    }
+
+    .chat-preview-hint {
+      position: fixed;
+      bottom: 90px;
+      right: 20px;
+      text-align: center;
+      z-index: 999;
+      animation: fadeInUp 1s ease-in-out;
+    }
+
+    .preview-text {
+      font-size: 0.9rem;
+      color: #00c9f6;
+      font-weight: bold;
+      margin-right: 20px;
+      margin-top: 10px;
+    }
+
+    .curved-arrow {
+      animation: arrowBounce 2s infinite;
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      background-color: rgba(10, 15, 44, 0.9);
+      color: #ccc;
+      font-size: 0.9rem;
+      box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.3);
+    }
+
+    .icons a {
+      color: var(--secondary);
+      margin: 0 10px;
+      font-size: 1.4rem;
+    }
+
+    .icons a:hover {
+      color: #fff;
+    }
+
+    @keyframes arrowBounce {
+      0%, 100% { transform: translateY(0) rotate(0deg); }
+      50% { transform: translateY(2px) rotate(2deg); }
+    }
+
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes slideUp {
+      0% { opacity: 0; transform: translateY(20px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeInZoom {
+      0% { opacity: 0; transform: scale(0.9); }
+      100% { opacity: 1; transform: scale(1); }
+    }
+  </style>
+  <script>
+    document.addEventListener("mousemove", function (e) {
+      document.documentElement.style.setProperty("--x", e.clientX + "px");
+      document.documentElement.style.setProperty("--y", e.clientY + "px");
+    });
+  </script>
+</head>
+
+<body>
+  <header>
+    <img src="https://files.bpcontent.cloud/2025/08/07/06/20250807060644-73AF801W.png" alt="EduSpark Logo">
+    <h1>EduSpark</h1>
+    <p>Lighting the Way to Smarter Learning.</p>
+  </header>
+
+  <section class="columns">
+    <div class="features">
+      <h2 class="section-title">Features</h2>
+      <ul>
+        <li>24/7 Academic Chat Support</li>
+        <li>Subject-Specific Guidance</li>
+        <li>School & College Syllabus-Aligned</li>
+        <li>Instant Query Resolution</li>
+      </ul>
+    </div>
+    <div class="tools">
+      <h2 class="section-title">Tools</h2>
+      <ul>
+        <li>Knowledge Library</li>
+        <li>Interactive Q&A Engine</li>
+        <li>Responsive Mobile Experience</li>
+        <li>Study Reminders (Coming Soon)</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="availability">
+    <h2 class="section-title">Available On</h2>
+    <div class="icons">
+      <a href="https://api.whatsapp.com/send?phone=15817019840&text=AYUVUD" target="_blank" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+      <a href="#" title="Web"><i class="fas fa-globe"></i></a>
+    </div>
+  </section>
+
+  <section style="text-align: center;">
+    <h2 style="margin-bottom: 10px; color: #c6ecf3;">Your Path to Progress Starts Here.</h2>
+    <p style="font-size: 1.1rem; color: #ccc; max-width: 700px; margin: auto;">Struggling with homework? Hungry for knowledge? EduSpark is your 24/7 academic buddy, ready to guide, explain, and support your learning journey. Let's get things done — the smart way!</p>
+    <a class="start-btn" href="https://cdn.botpress.cloud/webchat/v3.2/shareable.html?configUrl=https://files.bpcontent.cloud/2025/08/06/05/20250806051338-ZCMM8UQ8.json" target="_blank">
+      Start Now
+    </a>
+  </section>
+
+  <div class="chat-preview-hint">
+    <div class="preview-text">Preview Now</div>
+    <svg class="curved-arrow" width="40" height="40" viewBox="0 0 40 40">
+      <path d="M5,5 C5,25 30,5 35,35" stroke="#00c9f6" stroke-width="2" fill="none" />
+      <polygon points="33,33 37,33 35,37" fill="#00c9f6" />
+    </svg>
+  </div>
+
+  <footer>
+    <p>© 2025 EduSpark. Powered by Botpress. All rights reserved.</p>
+  </footer>
+</body>
+
+</html>
+
+
